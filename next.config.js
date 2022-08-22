@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
-}
+  images: {
+    domains: ["restcountries.eu"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
