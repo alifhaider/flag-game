@@ -1,62 +1,15 @@
-import type { InferGetServerSidePropsType } from 'next'
 import * as React from 'react'
+import type { InferGetServerSidePropsType } from 'next'
 import Head from 'next/head'
-import { DndProvider, useDrag } from 'react-dnd'
-import Image from 'next/image'
+import { DndProvider } from 'react-dnd'
 import styles from '../styles/Home.module.css'
-import DragBox from '../components/DragBox'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import DragDrop from '../components/DragDrop'
 
 const Home = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [droppedBoxNames, setDroppedBoxNames] = React.useState<Array<String>>(
-    [],
-  )
-
-  const [currentFlags, setCurrentFlags] = React.useState(() =>
-    getMultipleRandom(data, 3),
-  )
-
-  function shuffleArray(array: Array<TFlag>) {
-    let curId = array.length
-    while (0 !== curId) {
-      let randId = Math.floor(Math.random() * curId)
-      curId -= 1
-      let tmp = array[curId]
-      array[curId] = array[randId]
-      array[randId] = tmp
-    }
-    return array
-  }
-
-  function getMultipleRandom(arr: Array<TFlag>, num: number) {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random())
-
-    return shuffled.slice(0, num)
-  }
-
-  const handleDrop = (index: number, flag: TFlag) => {}
-
-  // const handleDrop = React.useCallback(
-  //   (index: number, flag: TFlag) => {
-  //     const { name } = flag;
-  //     setDroppedBoxNames(
-  //       update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
-  //     );
-  //     setDustbins(
-  //       update(dustbins, {
-  //         [index]: {
-  //           lastDroppedItem: {
-  //             $set: item,
-  //           },
-  //         },
-  //       })
-  //     );
-  //   },
-  //   [droppedBoxNames, dustbins]
-  // );
-
+  console.log(data)
   return (
     <div>
       <Head>
@@ -67,7 +20,9 @@ const Home = ({
       <main className={styles.main}>
         <h2>Drag and drop flags</h2>
         <DndProvider backend={HTML5Backend}>
-          <div className={styles.container}>
+          <div>Alif</div>
+          {/* <DragDrop flag={data} /> */}
+          {/* <div className={styles.container}>
             <div className={styles.flagsContainer}>
               {currentFlags.map((flag, index) => (
                 <>
@@ -86,7 +41,7 @@ const Home = ({
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </DndProvider>
       </main>
     </div>
